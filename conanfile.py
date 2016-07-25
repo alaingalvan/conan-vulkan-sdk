@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from conans import ConanFile, CMake, tools
+from conans import ConanFile, tools
 import sys
 import os
 
@@ -21,6 +21,8 @@ class vulkansdkConan(ConanFile):
         tools.download('https://github.com/KhronosGroup/Vulkan-LoaderAndValidationLayers/archive/sdk-1.0.21.0.zip', zip_name)
         tools.unzip(zip_name)
         os.unlink(zip_name)
+        os.rename(self.foldername, 'v')
+        self.foldername = 'v' # To Get Around Path being too long errors.
 
     def system_requirements(self):
         if self.settings.os == 'Linux':
@@ -38,7 +40,6 @@ class vulkansdkConan(ConanFile):
 
     def build(self):
         curdir = self.conanfile_directory + '/' + self.foldername
-        cmake = CMake(self.settings)
         self.run("cd %s & dir" % curdir)
 
         if self.settings.os == 'Windows':
@@ -60,6 +61,7 @@ class vulkansdkConan(ConanFile):
 
     def package(self):
         curdir = self.conanfile_directory + '/' + self.foldername
+
         self.copy('*', dst='include', src='%s/include' % curdir)
         self.copy('*', dst='include', src='%s/external/spirv-tools/external/spirv-headers/include/spirv/1.1' % curdir)
         self.copy('icd-spv.h', dst='include', src='%s/tests' % curdir)
