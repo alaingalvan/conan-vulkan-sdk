@@ -37,8 +37,8 @@ Versions corespond with releases on the KhronosGroup Repo. Please ask the Khrono
 
 Let's write a Heroku app that automatically releases the latest version of the sdk to conan when the Khronos Group Repo is updated! 
 
-[release-img]: https://img.shields.io/badge/release-1.0.17-B46BD6.svg?style=flat-square
-[conan-img]: https://img.shields.io/badge/conan.io-1.0.17-green.svg?style=flat-square
-[conan-url]: https://conan.io
+[release-img]: https://img.shields.io/badge/release-1.0.21.0-B46BD6.svg?style=flat-square
+[conan-img]: https://img.shields.io/badge/conan.io-1.0.21.0-green.svg?style=flat-square
+[conan-url]: https://www.conan.io/source/vulkan-sdk/1.0.21.0/alaingalvan/testing
 [license-img]: http://img.shields.io/:license-apache-blue.svg?style=flat-square
 [license-url]: http://www.apache.org/licenses/LICENSE-2.0

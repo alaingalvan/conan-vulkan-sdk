@@ -4,7 +4,6 @@ from conans import ConanFile, tools
 import sys
 import os
 
-
 class vulkansdkConan(ConanFile):
 
     name = 'vulkan-sdk'
@@ -15,6 +14,7 @@ class vulkansdkConan(ConanFile):
     exports = '*'
 
     foldername = 'Vulkan-LoaderAndValidationLayers-sdk-1.0.21.0'
+    builddir = ''
 
     def source(self):
         zip_name = 'sdk-1.0.21.0.zip'
@@ -39,17 +39,16 @@ class vulkansdkConan(ConanFile):
             sys.exit(1)
 
     def build(self):
-        curdir = self.conanfile_directory + '/' + self.foldername
-        self.run("cd %s & dir" % curdir)
+        self.builddir = os.path.join(self.conanfile_directory, self.foldername)
 
         if self.settings.os == 'Windows':
             if self.settings.arch == 'x86_64':
                 arch = 'x64'
             else:
                 arch = 'x86'
-            self.run('cd %s & update_external_sources.bat --all' % curdir)
-            self.run('cd %s & build_windows_targets.bat' % curdir)
-            self.run('cd %s & msbuild build/ALL_BUILD.vcxproj /p:Platform=%s /p:Configuration=%s /m ' % (curdir, arch, self.settings.build_type))
+            self.run('cd %s & update_external_sources.bat --all' % self.builddir)
+            self.run('cd %s & build_windows_targets.bat' % self.builddir)
+            self.run('cd %s & msbuild build/ALL_BUILD.vcxproj /p:Platform=%s /p:Configuration=%s /m ' % (self.builddir, arch, self.settings.build_type))
         elif self.settings.os == 'Linux':
             self.run('./update_external_sources.sh')
             self.run('cmake -H. -Bdbuild -DCMAKE_BUILD_TYPE=%s' % self.settings.build_type)
@@ -60,16 +59,14 @@ class vulkansdkConan(ConanFile):
             self.run('cd ../')
 
     def package(self):
-        curdir = self.conanfile_directory + '/' + self.foldername
+        self.copy(pattern='*', dst='include/vulkan', src='%s/include' % self.builddir, keep_path=False)
+        self.copy('*', dst='include/vulkan', src='%s/external/spirv-tools/external/spirv-headers/include/spirv/1.1' % self.builddir)
+        self.copy('icd-spv.h', dst='include/vulkan', src='%s/tests' % self.builddir)
 
-        self.copy('*', dst='include', src='%s/include' % curdir)
-        self.copy('*', dst='include', src='%s/external/spirv-tools/external/spirv-headers/include/spirv/1.1' % curdir)
-        self.copy('icd-spv.h', dst='include', src='%s/tests' % curdir)
+        self.copy('*', dst='lib', src='%s/build/loader/%s' % (self.builddir, self.settings.build_type))
+        self.copy('*', dst='lib', src='%s/build/layers/%s' % (self.builddir, self.settings.build_type))
 
-        self.copy('*', dst='lib', src='%s/build/loader/%s' % (curdir, self.settings.build_type))
-        self.copy('*', dst='lib', src='%s/build/layers/%s' % (curdir, self.settings.build_type))
-
-        self.copy('*', dst='bin', src='%s/build/loader/%s' % (curdir, self.settings.build_type))
-        self.copy('*', dst='bin', src='%s/build/layers/%s' % (curdir, self.settings.build_type))
-        self.copy('*', dst='bin', src='%s/external/glslang/build/StandAlone/%s' % (curdir, self.settings.build_type))
-        self.copy('*', dst='bin', src='%s/external/spirv-tools/build/tools/%s' % (curdir, self.settings.build_type))
+        self.copy('*', dst='bin', src='%s/build/loader/%s' % (self.builddir, self.settings.build_type))
+        self.copy('*', dst='bin', src='%s/build/layers/%s' % (self.builddir, self.settings.build_type))
+        self.copy('*', dst='bin', src='%s/external/glslang/build/StandAlone/%s' % (self.builddir, self.settings.build_type))
+        self.copy('*', dst='bin', src='%s/external/spirv-tools/build/tools/%s' % (self.builddir, self.settings.build_type))
