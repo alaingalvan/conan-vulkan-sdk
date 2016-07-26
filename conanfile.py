@@ -41,22 +41,22 @@ class vulkansdkConan(ConanFile):
     def build(self):
         self.builddir = os.path.join(self.conanfile_directory, self.foldername)
 
-        if self.settings.os == 'Windows':
-            if self.settings.arch == 'x86_64':
-                arch = 'x64'
-            else:
-                arch = 'x86'
-            self.run('cd %s & update_external_sources.bat --all' % self.builddir)
-            self.run('cd %s & build_windows_targets.bat' % self.builddir)
-            self.run('cd %s & msbuild build/ALL_BUILD.vcxproj /p:Platform=%s /p:Configuration=%s /m ' % (self.builddir, arch, self.settings.build_type))
-        elif self.settings.os == 'Linux':
-            self.run('./update_external_sources.sh')
-            self.run('cmake -H. -Bdbuild -DCMAKE_BUILD_TYPE=%s' % self.settings.build_type)
-            self.run('cd dbuild')
-            self.run('make')
-            self.run('export LD_LIBRARY_PATH=%s/Vulkan-LoaderAndValidationLayers/dbuild/loader' % self.conanfile_directory)
-            self.run('export VK_LAYER_PATH=%s/Vulkan-LoaderAndValidationLayers/dbuild/layers' % self.conanfile_directory)
-            self.run('cd ../')
+        # if self.settings.os == 'Windows':
+        #     if self.settings.arch == 'x86_64':
+        #         arch = 'x64'
+        #     else:
+        #         arch = 'x86'
+        #     self.run('cd %s & update_external_sources.bat --all' % self.builddir)
+        #     self.run('cd %s & build_windows_targets.bat' % self.builddir)
+        #     self.run('cd %s & msbuild build/ALL_BUILD.vcxproj /p:Platform=%s /p:Configuration=%s /m /verbosity:m' % (self.builddir, arch, self.settings.build_type))
+        # elif self.settings.os == 'Linux':
+        #     self.run('./update_external_sources.sh')
+        #     self.run('cmake -H. -Bdbuild -DCMAKE_BUILD_TYPE=%s' % self.settings.build_type)
+        #     self.run('cd dbuild')
+        #     self.run('make')
+        #     self.run('export LD_LIBRARY_PATH=%s/Vulkan-LoaderAndValidationLayers/dbuild/loader' % self.conanfile_directory)
+        #     self.run('export VK_LAYER_PATH=%s/Vulkan-LoaderAndValidationLayers/dbuild/layers' % self.conanfile_directory)
+        #     self.run('cd ../')
 
     def package(self):
         self.copy(pattern='*', dst='include/vulkan', src='%s/include' % self.builddir, keep_path=False)
@@ -70,3 +70,6 @@ class vulkansdkConan(ConanFile):
         self.copy('*', dst='bin', src='%s/build/layers/%s' % (self.builddir, self.settings.build_type))
         self.copy('*', dst='bin', src='%s/external/glslang/build/StandAlone/%s' % (self.builddir, self.settings.build_type))
         self.copy('*', dst='bin', src='%s/external/spirv-tools/build/tools/%s' % (self.builddir, self.settings.build_type))
+
+    def package_info(self):
+            self.cpp_info.libs = ['vulkan-1', 'VKstatic.1', 'VkLayer_utils', 'VkLayer_unique_objects', 'VkLayer_threading', 'VkLayer_swapchain', 'VkLayer_parameter_validation', 'VkLayer_object_tracker', 'VkLayer_image', 'VkLayer_core_validation']
