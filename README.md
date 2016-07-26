@@ -9,7 +9,7 @@
 
 ## Usage
 
-Install [Python](https://www.python.org/downloads/), [Visual Studio](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx), and [Conan](https://www.conan.io/) a C++ Package Manager, 
+Install [Python](https://www.python.org/downloads/), [Visual Studio](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx), and [Conan](https://www.conan.io/), a C++ Package Manager, 
 
 On Windows make sure that your path includes Visual Studio's `msbuild` as well as `python`.
 
