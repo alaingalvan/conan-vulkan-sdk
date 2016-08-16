@@ -2,9 +2,9 @@
 
 ![Release][release-img] [![conan-img]][conan-url] [![License][license-img]][license-url]
 
-> **NOTE**: I have no affilication with the Khronos Group. 
+> **NOTE**: I have no affiliation with the Khronos Group. 
 
-[Conan](https://conan.io) package for the [Vulkan SDK](https://github.com/KhronosGroup/Vulkan-LoaderAndValidationLayers.git). Does not include the extra tools that are provided by [LunarG's VulkanTools Repo](https://github.com/LunarG/VulkanTools).
+[Conan](https://conan.io) package for the [Vulkan SDK](https://github.com/LunarG/VulkanTools) provided by LunarG.
 
 
 ## Usage
@@ -31,7 +31,7 @@ conan install conan-vulkan-sdk --build
 
 Build specs based on instructions on the [Vulkan Repo](https://github.com/KhronosGroup/Vulkan-LoaderAndValidationLayers/blob/master/BUILD.md), as well as what I was able to see from the sdk binaries. 
 
-Versions corespond with releases on the KhronosGroup Repo. Please ask the Khronos Group to distribute binaries! 
+Versions correspond with releases on the KhronosGroup Repo. Please ask the Khronos Group to distribute binaries! 
 
 ### Call to Action
 

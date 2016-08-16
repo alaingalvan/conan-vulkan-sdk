@@ -18,7 +18,7 @@ class vulkansdkConan(ConanFile):
 
     def source(self):
         zip_name = 'sdk-1.0.21.0.zip'
-        tools.download('https://github.com/KhronosGroup/Vulkan-LoaderAndValidationLayers/archive/sdk-1.0.21.0.zip', zip_name)
+        tools.download('https://github.com/LunarG/VulkanTools/archive/sdk-1.0.21.0.zip', zip_name)
         tools.unzip(zip_name)
         os.unlink(zip_name)
         os.rename(self.foldername, 'v')
@@ -79,9 +79,12 @@ class vulkansdkConan(ConanFile):
             'VkLayer_unique_objects',
             'VkLayer_threading',
             'VkLayer_swapchain',
+            'VkLayer_swapchain',
             'VkLayer_parameter_validation',
             'VkLayer_object_tracker',
             'VkLayer_image',
+            'vkLayer_device_limits',
             'VkLayer_core_validation',
+            'vkLayer_api_dump'
             ]
 
