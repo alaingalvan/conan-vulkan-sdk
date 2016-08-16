@@ -13,7 +13,7 @@ class vulkansdkConan(ConanFile):
     settings = ('os', 'compiler', 'build_type', 'arch')
     exports = '*'
 
-    foldername = 'Vulkan-LoaderAndValidationLayers-sdk-1.0.21.0'
+    foldername = 'sdk-1.0.21.0'
     builddir = ''
 
     def source(self):
