@@ -13,11 +13,11 @@ class vulkansdkConan(ConanFile):
     settings = ('os', 'compiler', 'build_type', 'arch')
     exports = '*'
 
-    foldername = 'sdk-1.0.21.0'
+    foldername = 'VulkanTools-sdk-1.0.21.0'
     builddir = ''
 
     def source(self):
-        zip_name = 'sdk-1.0.21.0.zip'
+        zip_name = 'VulkanTools-sdk-1.0.21.0.zip'
         tools.download('https://github.com/LunarG/VulkanTools/archive/sdk-1.0.21.0.zip', zip_name)
         tools.unzip(zip_name)
         os.unlink(zip_name)
