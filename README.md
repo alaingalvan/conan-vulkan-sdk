@@ -17,8 +17,8 @@ Install [Python](https://www.python.org/downloads/), and [Conan](https://www.con
 conan install conan-vulkan-sdk --build
 ```
 
-[release-img]: https://img.shields.io/badge/release-1.0.21.0-B46BD6.svg?style=flat-square
-[conan-img]: https://img.shields.io/badge/conan.io-1.0.21.0-green.svg?style=flat-square
-[conan-url]: https://www.conan.io/source/vulkan-sdk/1.0.21.0/alaingalvan/testing
+[release-img]: https://img.shields.io/badge/release-1.0.24.0-B46BD6.svg?style=flat-square
+[conan-img]: https://img.shields.io/badge/conan.io-1.0.24.0-green.svg?style=flat-square
+[conan-url]: https://www.conan.io/source/vulkan-sdk/1.0.24.0/alaingalvan/testing
 [license-img]: http://img.shields.io/:license-apache-blue.svg?style=flat-square
 [license-url]: http://www.apache.org/licenses/LICENSE-2.0
