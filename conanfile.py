@@ -5,17 +5,17 @@ from conans import ConanFile
 class vulkansdkConan(ConanFile):
 
     name = 'vulkan-sdk'
-    version = '1.0.21.0'
+    version = '1.0.24.0'
     license = 'Apache'
     url = 'https://github.com/alaingalvan/conan-vulkan-sdk'
     settings = ('os', 'compiler', 'build_type', 'arch')
     exports = '*'
 
-    foldername = 'VulkanTools-sdk-1.0.21.0'
+    foldername = 'VulkanTools-sdk-1.0.24.0'
     builddir = ''
 
     def build(self):
-        self.builddir = 'C:/VulkanSDK/1.0.21.1'
+        self.builddir = 'C:/VulkanSDK/1.0.24.1'
 
     def package(self):
         self.copy(pattern='*', dst='Include/vulkan', src='%s/include' % self.builddir, keep_path=False)
