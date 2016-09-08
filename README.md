@@ -6,7 +6,7 @@
 
 > **NOTE**: I have no affiliation with the Khronos Group. 
 
-[Conan](https://conan.io) package for the [Vulkan SDK](https://github.com/LunarG/VulkanTools) provided by LunarG.
+[Conan](https://conan.io) package for the [Vulkan SDK](https://github.com/LunarG/VulkanTools) provided by LunarG. Doesn't actually install the SDK, simply serves as a helper that copies files from it.
 
 
 ## Usage
