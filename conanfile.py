@@ -1,21 +1,21 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from conans import ConanFile
+import os
 
 class vulkansdkConan(ConanFile):
 
     name = 'vulkan-sdk'
-    version = '1.0.30.0'
+    version = '1.0.33.0'
     license = 'Apache'
     url = 'https://github.com/alaingalvan/conan-vulkan-sdk'
     settings = ('os', 'compiler', 'build_type', 'arch')
     exports = '*'
 
-    foldername = 'VulkanTools-sdk-1.0.30.0'
     builddir = ''
 
     def build(self):
-        self.builddir = 'C:/VulkanSDK/1.0.30.0'
+        self.builddir = 'C:/VulkanSDK/' + os.listdir('C:/VulkanSDK/')[0]
 
     def package(self):
         self.copy(pattern='*', dst='Include/vulkan', src='%s/include' % self.builddir, keep_path=False)
