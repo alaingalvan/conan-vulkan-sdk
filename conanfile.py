@@ -1,14 +1,15 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 from conans import ConanFile
 import os
 
-class vulkansdkConan(ConanFile):
+
+class VulkanSDKConan(ConanFile):
 
     name = 'vulkan-sdk'
-    version = '1.0.33.0'
+    version = '1.0.37.0'
+    description = "The official Vulkan SDK distributed by LunarG."
+    author = "Alain Galvan (hi@alain.xyz)"
     license = 'Apache'
-    url = 'https://github.com/alaingalvan/conan-vulkan-sdk'
+    url = 'https://github.com/alaingalvan/conan-vulkan-sdk.git'
     settings = ('os', 'compiler', 'build_type', 'arch')
     exports = '*'
 
@@ -18,7 +19,8 @@ class vulkansdkConan(ConanFile):
         self.builddir = 'C:/VulkanSDK/' + os.listdir('C:/VulkanSDK/')[0]
 
     def package(self):
-        self.copy(pattern='*', dst='Include/vulkan', src='%s/include' % self.builddir, keep_path=False)
+        self.copy(pattern='*', dst='Include/vulkan', src='%s/include' %
+                  self.builddir, keep_path=False)
 
         is_32 = '' if self.settings.arch == 'x86_64' else '32'
         bin_dir = 'Bin%s' % is_32
@@ -42,5 +44,4 @@ class vulkansdkConan(ConanFile):
             'VkLayer_image',
             'VkLayer_core_validation',
             'VkLayer_api_dump'
-            ]
-            
+        ]
