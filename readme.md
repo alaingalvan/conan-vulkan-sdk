@@ -8,10 +8,18 @@
 
 ## Install
 
-Install [Python](https://www.python.org/downloads/) and [Conan](https://www.conan.io/), a C++ Package Manager.
+Install [Python](https://www.python.org/downloads/) and [Conan](https://www.conan.io/), a C++ Package Manager. Be sure to install the Vulkan SDK before running this file.
+
+Then add the dependency to your `conanfile.txt` file:
+```ini
+[requires]
+vulkan-sdk/1.0.46.0@alaingalvan/stable
+```
+
+And the build your project.
 
 ```bash
-conan install vulkan-sdk
+conan install --build
 ```
 
 ## Deploying
