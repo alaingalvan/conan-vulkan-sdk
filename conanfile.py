@@ -5,7 +5,7 @@ import os
 class VulkanSDKConan(ConanFile):
 
     name = 'vulkan-sdk'
-    version = '1.0.37.0'
+    version = '1.0.46.0'
     description = "The official Vulkan SDK distributed by LunarG."
     author = "Alain Galvan (hi@alain.xyz)"
     license = 'Apache'
