@@ -1,6 +1,5 @@
 # conan-vulkan-sdk
 
-![Release][release-img]
 [![conan-img]][conan-url]
 [![License][license-img]][license-url]
 
